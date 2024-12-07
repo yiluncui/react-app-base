@@ -531,3 +531,332 @@ src/components/TaxPlanner.js
   Line 27:10:  'alpha' is defined but never used        no-unused-vars
 
 webpack compiled with 1 warning
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/FinancialEducation.js
+Syntax error: Unexpected token, expected "," (59:29) (59:29)
+WARNING in [eslint] 
+src/App.js
+  Line 32:8:  'FinancialReports' is defined but never used    no-unused-vars
+  Line 33:8:  'FinancialEducation' is defined but never used  no-unused-vars
+
+src/components/CashFlowForecast.js
+  Line 149:6:  React Hook useEffect has a missing dependency: 'generateForecastData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/DashboardCharts.js
+  Line 15:16:  'Bar' is defined but never used                   no-unused-vars
+  Line 48:7:   'getGradient' is assigned a value but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 13:3:  'Tooltip' is defined but never used        no-unused-vars
+  Line 18:8:  'RecommendIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialReports.js
+  Line 11:3:   'Button' is defined but never used                                                                                 no-unused-vars
+  Line 13:3:   'Tooltip' is defined but never used                                                                                no-unused-vars
+  Line 31:8:   'CompareArrowsIcon' is defined but never used                                                                      no-unused-vars
+  Line 83:6:   React Hook useEffect has a missing dependency: 'generateReport'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 148:9:  'formatPercentage' is assigned a value but never used                                                              no-unused-vars
+  Line 152:9:  'getChangeIndicator' is assigned a value but never used                                                            no-unused-vars
+
+src/components/InvestmentTracker.js
+  Line 19:3:  'Tooltip' is defined but never used  no-unused-vars
+  Line 22:3:  'Alert' is defined but never used    no-unused-vars
+
+src/components/QuickActions.js
+  Line 7:3:  'IconButton' is defined but never used  no-unused-vars
+  Line 8:3:  'Tooltip' is defined but never used     no-unused-vars
+
+src/components/TaxPlanner.js
+  Line 12:3:   'Tooltip' is defined but never used      no-unused-vars
+  Line 23:8:   'InfoIcon' is defined but never used     no-unused-vars
+  Line 26:8:   'SavingsIcon' is defined but never used  no-unused-vars
+  Line 27:10:  'alpha' is defined but never used        no-unused-vars
+
+ERROR in ./src/components/FinancialEducation.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /workspace/react-app-base/src/components/FinancialEducation.js: Unexpected token, expected "," (59:29)
+
+  57 |     title: 'Investment Basics: Getting Started',
+  58 |     category: 'Investing',
+> 59 |     description: 'A beginner's guide to understanding investment options.',
+     |                              ^
+  60 |     image: 'https://source.unsplash.com/random/400x200?investing',
+  61 |     readTime: '8 min',
+  62 |     difficulty: 'Intermediate',
+    at constructor (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.parseObjectLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11361:14)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10885:23)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseExprListItem (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11713:18)
+    at FlowParserMixin.parseExprList (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11688:22)
+    at FlowParserMixin.parseArrayLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11595:26)
+    at FlowParserMixin.parseArrayLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5369:24)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10876:23)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11950:16)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseVar (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12882:91)
+    at FlowParserMixin.parseVarStatement (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12728:10)
+    at FlowParserMixin.parseStatementContent (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12344:23)
+    at FlowParserMixin.parseStatementLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12261:17)
+    at FlowParserMixin.parseStatementLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5054:24)
+    at FlowParserMixin.parseModuleItem (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12238:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12814:36)
+    at FlowParserMixin.parseBlockBody (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12807:10)
+    at FlowParserMixin.parseProgram (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12135:10)
+    at FlowParserMixin.parseTopLevel (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12125:25)
+    at FlowParserMixin.parseTopLevel (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5821:28)
+    at FlowParserMixin.parse (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:13933:10)
+    at parse (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:13967:38)
+    at parser (/workspace/react-app-base/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+
+ERROR in [eslint] 
+src/components/FinancialEducation.js
+  Line 59:29:  Parsing error: Unexpected token, expected "," (59:29)
+
+webpack compiled with 2 errors and 1 warning
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/FinancialEducation.js
+Syntax error: Unexpected token, expected "," (59:29) (59:29)
+WARNING in [eslint] 
+src/App.js
+  Line 32:8:  'FinancialReports' is defined but never used    no-unused-vars
+  Line 33:8:  'FinancialEducation' is defined but never used  no-unused-vars
+
+src/components/CashFlowForecast.js
+  Line 149:6:  React Hook useEffect has a missing dependency: 'generateForecastData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/DashboardCharts.js
+  Line 15:16:  'Bar' is defined but never used                   no-unused-vars
+  Line 48:7:   'getGradient' is assigned a value but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 13:3:  'Tooltip' is defined but never used        no-unused-vars
+  Line 18:8:  'RecommendIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialReports.js
+  Line 11:3:   'Button' is defined but never used                                                                                 no-unused-vars
+  Line 13:3:   'Tooltip' is defined but never used                                                                                no-unused-vars
+  Line 31:8:   'CompareArrowsIcon' is defined but never used                                                                      no-unused-vars
+  Line 83:6:   React Hook useEffect has a missing dependency: 'generateReport'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 148:9:  'formatPercentage' is assigned a value but never used                                                              no-unused-vars
+  Line 152:9:  'getChangeIndicator' is assigned a value but never used                                                            no-unused-vars
+
+src/components/InvestmentTracker.js
+  Line 19:3:  'Tooltip' is defined but never used  no-unused-vars
+  Line 22:3:  'Alert' is defined but never used    no-unused-vars
+
+src/components/QuickActions.js
+  Line 7:3:  'IconButton' is defined but never used  no-unused-vars
+  Line 8:3:  'Tooltip' is defined but never used     no-unused-vars
+
+src/components/TaxPlanner.js
+  Line 12:3:   'Tooltip' is defined but never used      no-unused-vars
+  Line 23:8:   'InfoIcon' is defined but never used     no-unused-vars
+  Line 26:8:   'SavingsIcon' is defined but never used  no-unused-vars
+  Line 27:10:  'alpha' is defined but never used        no-unused-vars
+
+ERROR in ./src/components/FinancialEducation.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /workspace/react-app-base/src/components/FinancialEducation.js: Unexpected token, expected "," (59:29)
+
+  57 |     title: 'Investment Basics: Getting Started',
+  58 |     category: 'Investing',
+> 59 |     description: 'A beginner's guide to understanding investment options.',
+     |                              ^
+  60 |     image: 'https://source.unsplash.com/random/400x200?investing',
+  61 |     readTime: '8 min',
+  62 |     difficulty: 'Intermediate',
+    at constructor (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.parseObjectLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11361:14)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10885:23)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseExprListItem (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11713:18)
+    at FlowParserMixin.parseExprList (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11688:22)
+    at FlowParserMixin.parseArrayLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11595:26)
+    at FlowParserMixin.parseArrayLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5369:24)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10876:23)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11950:16)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseVar (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12882:91)
+    at FlowParserMixin.parseVarStatement (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12728:10)
+    at FlowParserMixin.parseStatementContent (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12344:23)
+    at FlowParserMixin.parseStatementLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12261:17)
+    at FlowParserMixin.parseStatementLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5054:24)
+    at FlowParserMixin.parseModuleItem (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12238:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12814:36)
+    at FlowParserMixin.parseBlockBody (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12807:10)
+    at FlowParserMixin.parseProgram (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12135:10)
+    at FlowParserMixin.parseTopLevel (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12125:25)
+    at FlowParserMixin.parseTopLevel (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5821:28)
+    at FlowParserMixin.parse (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:13933:10)
+    at parse (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:13967:38)
+    at parser (/workspace/react-app-base/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+
+ERROR in [eslint] 
+src/components/FinancialEducation.js
+  Line 59:29:  Parsing error: Unexpected token, expected "," (59:29)
+
+webpack compiled with 2 errors and 1 warning
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/components/FinancialEducation.js
+Syntax error: Unexpected token, expected "," (59:29) (59:29)
+WARNING in [eslint] 
+src/components/CashFlowForecast.js
+  Line 149:6:  React Hook useEffect has a missing dependency: 'generateForecastData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/DashboardCharts.js
+  Line 15:16:  'Bar' is defined but never used                   no-unused-vars
+  Line 48:7:   'getGradient' is assigned a value but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 13:3:  'Tooltip' is defined but never used        no-unused-vars
+  Line 18:8:  'RecommendIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialReports.js
+  Line 11:3:   'Button' is defined but never used                                                                                 no-unused-vars
+  Line 13:3:   'Tooltip' is defined but never used                                                                                no-unused-vars
+  Line 31:8:   'CompareArrowsIcon' is defined but never used                                                                      no-unused-vars
+  Line 83:6:   React Hook useEffect has a missing dependency: 'generateReport'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 148:9:  'formatPercentage' is assigned a value but never used                                                              no-unused-vars
+  Line 152:9:  'getChangeIndicator' is assigned a value but never used                                                            no-unused-vars
+
+src/components/InvestmentTracker.js
+  Line 19:3:  'Tooltip' is defined but never used  no-unused-vars
+  Line 22:3:  'Alert' is defined but never used    no-unused-vars
+
+src/components/QuickActions.js
+  Line 7:3:  'IconButton' is defined but never used  no-unused-vars
+  Line 8:3:  'Tooltip' is defined but never used     no-unused-vars
+
+src/components/TaxPlanner.js
+  Line 12:3:   'Tooltip' is defined but never used      no-unused-vars
+  Line 23:8:   'InfoIcon' is defined but never used     no-unused-vars
+  Line 26:8:   'SavingsIcon' is defined but never used  no-unused-vars
+  Line 27:10:  'alpha' is defined but never used        no-unused-vars
+
+ERROR in ./src/components/FinancialEducation.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /workspace/react-app-base/src/components/FinancialEducation.js: Unexpected token, expected "," (59:29)
+
+  57 |     title: 'Investment Basics: Getting Started',
+  58 |     category: 'Investing',
+> 59 |     description: 'A beginner's guide to understanding investment options.',
+     |                              ^
+  60 |     image: 'https://source.unsplash.com/random/400x200?investing',
+  61 |     readTime: '8 min',
+  62 |     difficulty: 'Intermediate',
+    at constructor (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:359:19)
+    at FlowParserMixin.raise (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3266:19)
+    at FlowParserMixin.unexpected (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3286:16)
+    at FlowParserMixin.expect (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:3596:12)
+    at FlowParserMixin.parseObjectLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11361:14)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10885:23)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11955:12)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseExprListItem (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11713:18)
+    at FlowParserMixin.parseExprList (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11688:22)
+    at FlowParserMixin.parseArrayLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11595:26)
+    at FlowParserMixin.parseArrayLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5369:24)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10876:23)
+    at FlowParserMixin.parseExprAtom (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:6818:20)
+    at FlowParserMixin.parseExprSubscripts (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10619:23)
+    at FlowParserMixin.parseUpdate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10604:21)
+    at FlowParserMixin.parseMaybeUnary (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10584:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10438:61)
+    at FlowParserMixin.parseExprOps (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10443:23)
+    at FlowParserMixin.parseMaybeConditional (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10420:23)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10383:21)
+    at FlowParserMixin.parseMaybeAssign (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5685:18)
+    at /workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:39
+    at FlowParserMixin.allowInAnd (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:11950:16)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:10353:17)
+    at FlowParserMixin.parseVar (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12882:91)
+    at FlowParserMixin.parseVarStatement (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12728:10)
+    at FlowParserMixin.parseStatementContent (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12344:23)
+    at FlowParserMixin.parseStatementLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12261:17)
+    at FlowParserMixin.parseStatementLike (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5054:24)
+    at FlowParserMixin.parseModuleItem (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12238:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12814:36)
+    at FlowParserMixin.parseBlockBody (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12807:10)
+    at FlowParserMixin.parseProgram (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12135:10)
+    at FlowParserMixin.parseTopLevel (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:12125:25)
+    at FlowParserMixin.parseTopLevel (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:5821:28)
+    at FlowParserMixin.parse (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:13933:10)
+    at parse (/workspace/react-app-base/node_modules/@babel/parser/lib/index.js:13967:38)
+    at parser (/workspace/react-app-base/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+
+ERROR in [eslint] 
+src/components/FinancialEducation.js
+  Line 59:29:  Parsing error: Unexpected token, expected "," (59:29)
+
+webpack compiled with 2 errors and 1 warning
