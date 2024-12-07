@@ -27,6 +27,8 @@ import FinancialGoals from './components/FinancialGoals';
 import FinancialInsights from './components/FinancialInsights';
 import RecurringTransactions from './components/RecurringTransactions';
 import InvestmentTracker from './components/InvestmentTracker';
+import CashFlowForecast from './components/CashFlowForecast';
+import TaxPlanner from './components/TaxPlanner';
 import {
   loadTransactions,
   addTransaction,
@@ -211,6 +213,8 @@ function App() {
               <Tab label="Budgets" />
               <Tab label="Goals" />
               <Tab label="Investments" />
+              <Tab label="Forecast" />
+              <Tab label="Tax" />
               <Tab label="Insights" />
             </Tabs>
           </Paper>
@@ -326,8 +330,21 @@ function App() {
             <InvestmentTracker />
           )}
 
-          {/* Insights Tab */}
+          {/* Forecast Tab */}
           {tab === 6 && (
+            <CashFlowForecast
+              transactions={transactions}
+              recurringTransactions={[]} // TODO: Add recurring transactions state
+            />
+          )}
+
+          {/* Tax Tab */}
+          {tab === 7 && (
+            <TaxPlanner transactions={transactions} />
+          )}
+
+          {/* Insights Tab */}
+          {tab === 8 && (
             <FinancialInsights transactions={transactions} />
           )}
         </Container>
