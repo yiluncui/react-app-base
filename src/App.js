@@ -8,23 +8,76 @@ import {
   ThemeProvider,
   CssBaseline,
   Paper,
-  useMediaQuery
+  useMediaQuery,
+  Snackbar,
+  Alert,
+  Fab,
+  Zoom,
+  useScrollTrigger,
+  Fade
 } from '@mui/material';
 import TransactionForm from './components/TransactionForm';
 import TransactionList from './components/TransactionList';
 import Summary from './components/Summary';
+import DashboardCharts from './components/DashboardCharts';
+import TransactionStats from './components/TransactionStats';
+import QuickActions from './components/QuickActions';
 import {
   loadTransactions,
   addTransaction,
   deleteTransaction,
-  getTransactionsByType
+  getTransactionsByType,
+  saveTransactions
 } from './data/transactions';
 import { theme } from './theme';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import AddIcon from '@mui/icons-material/Add';
+
+function ScrollTop() {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        onClick={handleClick}
+        sx={{
+          position: 'fixed',
+          bottom: 16,
+          right: 16,
+          zIndex: 1000,
+        }}
+      >
+        <Fab
+          color="primary"
+          size="small"
+          aria-label="scroll back to top"
+          sx={{
+            boxShadow: theme => `0 0 20px ${theme.palette.primary.main}25`,
+          }}
+        >
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Box>
+    </Zoom>
+  );
+}
 
 function App() {
   const [transactions, setTransactions] = useState([]);
   const [tab, setTab] = useState(0);
+  const [showForm, setShowForm] = useState(false);
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
@@ -35,12 +88,37 @@ function App() {
     setTransactions(prevTransactions => 
       addTransaction(prevTransactions, newTransaction)
     );
+    setShowForm(false);
+    setSnackbar({
+      open: true,
+      message: 'Transaction added successfully',
+      severity: 'success'
+    });
   };
 
   const handleDeleteTransaction = (id) => {
     setTransactions(prevTransactions => 
       deleteTransaction(prevTransactions, id)
     );
+    setSnackbar({
+      open: true,
+      message: 'Transaction deleted',
+      severity: 'info'
+    });
+  };
+
+  const handleClearTransactions = () => {
+    setTransactions([]);
+    saveTransactions([]);
+    setSnackbar({
+      open: true,
+      message: 'All transactions cleared',
+      severity: 'info'
+    });
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar(prev => ({ ...prev, open: false }));
   };
 
   const filteredTransactions = tab === 0 
@@ -57,7 +135,7 @@ function App() {
           py: { xs: 2, sm: 4 }
         }}
       >
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <Box 
             sx={{ 
               display: 'flex',
@@ -88,6 +166,18 @@ function App() {
           </Box>
 
           <Summary transactions={transactions} />
+          
+          <QuickActions 
+            transactions={transactions}
+            onClearTransactions={handleClearTransactions}
+          />
+
+          {transactions.length > 0 && (
+            <>
+              <DashboardCharts transactions={transactions} />
+              <TransactionStats transactions={transactions} />
+            </>
+          )}
           
           <Paper 
             elevation={1} 
@@ -163,13 +253,51 @@ function App() {
             </Tabs>
           </Paper>
 
-          <TransactionForm onSubmit={handleAddTransaction} />
+          <Fade in={showForm}>
+            <Box>
+              {showForm && <TransactionForm onSubmit={handleAddTransaction} />}
+            </Box>
+          </Fade>
           
           <TransactionList 
             transactions={filteredTransactions} 
             onDelete={handleDeleteTransaction}
           />
         </Container>
+
+        <Fab
+          color="primary"
+          aria-label="add transaction"
+          onClick={() => setShowForm(!showForm)}
+          sx={{
+            position: 'fixed',
+            bottom: 16,
+            left: 16,
+            transform: showForm ? 'rotate(45deg)' : 'none',
+            transition: 'transform 0.2s',
+            boxShadow: theme => `0 0 20px ${theme.palette.primary.main}25`,
+          }}
+        >
+          <AddIcon />
+        </Fab>
+
+        <ScrollTop />
+
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={4000}
+          onClose={handleCloseSnackbar}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert
+            onClose={handleCloseSnackbar}
+            severity={snackbar.severity}
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
       </Box>
     </ThemeProvider>
   );
