@@ -25,6 +25,8 @@ import QuickActions from './components/QuickActions';
 import BudgetTracker from './components/BudgetTracker';
 import FinancialGoals from './components/FinancialGoals';
 import FinancialInsights from './components/FinancialInsights';
+import RecurringTransactions from './components/RecurringTransactions';
+import InvestmentTracker from './components/InvestmentTracker';
 import {
   loadTransactions,
   addTransaction,
@@ -205,8 +207,10 @@ function App() {
             >
               <Tab label="Dashboard" />
               <Tab label="Transactions" />
+              <Tab label="Recurring" />
               <Tab label="Budgets" />
               <Tab label="Goals" />
+              <Tab label="Investments" />
               <Tab label="Insights" />
             </Tabs>
           </Paper>
@@ -299,18 +303,31 @@ function App() {
             </>
           )}
 
-          {/* Budgets Tab */}
+          {/* Recurring Tab */}
           {tab === 2 && (
+            <RecurringTransactions
+              transactions={transactions}
+              onAddTransaction={handleAddTransaction}
+            />
+          )}
+
+          {/* Budgets Tab */}
+          {tab === 3 && (
             <BudgetTracker transactions={transactions} />
           )}
 
           {/* Goals Tab */}
-          {tab === 3 && (
+          {tab === 4 && (
             <FinancialGoals transactions={transactions} />
           )}
 
+          {/* Investments Tab */}
+          {tab === 5 && (
+            <InvestmentTracker />
+          )}
+
           {/* Insights Tab */}
-          {tab === 4 && (
+          {tab === 6 && (
             <FinancialInsights transactions={transactions} />
           )}
         </Container>
