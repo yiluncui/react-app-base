@@ -22,6 +22,9 @@ import Summary from './components/Summary';
 import DashboardCharts from './components/DashboardCharts';
 import TransactionStats from './components/TransactionStats';
 import QuickActions from './components/QuickActions';
+import BudgetTracker from './components/BudgetTracker';
+import FinancialGoals from './components/FinancialGoals';
+import FinancialInsights from './components/FinancialInsights';
 import {
   loadTransactions,
   addTransaction,
@@ -167,18 +170,6 @@ function App() {
 
           <Summary transactions={transactions} />
           
-          <QuickActions 
-            transactions={transactions}
-            onClearTransactions={handleClearTransactions}
-          />
-
-          {transactions.length > 0 && (
-            <>
-              <DashboardCharts transactions={transactions} />
-              <TransactionStats transactions={transactions} />
-            </>
-          )}
-          
           <Paper 
             elevation={1} 
             sx={{ 
@@ -190,7 +181,8 @@ function App() {
             <Tabs 
               value={tab} 
               onChange={(e, newValue) => setTab(newValue)}
-              variant={isMobile ? "fullWidth" : "standard"}
+              variant={isMobile ? "scrollable" : "standard"}
+              scrollButtons={isMobile ? "auto" : false}
               centered={!isMobile}
               sx={{
                 bgcolor: 'background.paper',
@@ -211,58 +203,116 @@ function App() {
                 },
               }}
             >
-              <Tab 
-                label={
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    All Transactions
-                    {transactions.length > 0 && 
-                      <Box
-                        component="span"
-                        sx={{
-                          bgcolor: 'primary.main',
-                          color: 'primary.contrastText',
-                          px: 1,
-                          py: 0.5,
-                          borderRadius: 1,
-                          fontSize: '0.75rem',
-                          fontWeight: 600,
-                        }}
-                      >
-                        {transactions.length}
-                      </Box>
-                    }
-                  </Box>
-                }
-              />
-              <Tab 
-                label="Income"
-                sx={{
-                  '&.Mui-selected': {
-                    color: 'success.main',
-                  },
-                }}
-              />
-              <Tab 
-                label="Expenses"
-                sx={{
-                  '&.Mui-selected': {
-                    color: 'error.main',
-                  },
-                }}
-              />
+              <Tab label="Dashboard" />
+              <Tab label="Transactions" />
+              <Tab label="Budgets" />
+              <Tab label="Goals" />
+              <Tab label="Insights" />
             </Tabs>
           </Paper>
 
-          <Fade in={showForm}>
-            <Box>
-              {showForm && <TransactionForm onSubmit={handleAddTransaction} />}
-            </Box>
-          </Fade>
-          
-          <TransactionList 
-            transactions={filteredTransactions} 
-            onDelete={handleDeleteTransaction}
-          />
+          {/* Dashboard Tab */}
+          {tab === 0 && (
+            <>
+              <QuickActions 
+                transactions={transactions}
+                onClearTransactions={handleClearTransactions}
+              />
+              {transactions.length > 0 && (
+                <>
+                  <DashboardCharts transactions={transactions} />
+                  <TransactionStats transactions={transactions} />
+                </>
+              )}
+            </>
+          )}
+
+          {/* Transactions Tab */}
+          {tab === 1 && (
+            <>
+              <Paper 
+                elevation={1} 
+                sx={{ 
+                  mb: 3,
+                  borderRadius: 2,
+                  overflow: 'hidden'
+                }}
+              >
+                <Tabs 
+                  value={tab === 1 ? 0 : 1}
+                  onChange={(e, newValue) => setTab(newValue)}
+                  variant={isMobile ? "fullWidth" : "standard"}
+                  centered={!isMobile}
+                >
+                  <Tab 
+                    label={
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        All Transactions
+                        {transactions.length > 0 && 
+                          <Box
+                            component="span"
+                            sx={{
+                              bgcolor: 'primary.main',
+                              color: 'primary.contrastText',
+                              px: 1,
+                              py: 0.5,
+                              borderRadius: 1,
+                              fontSize: '0.75rem',
+                              fontWeight: 600,
+                            }}
+                          >
+                            {transactions.length}
+                          </Box>
+                        }
+                      </Box>
+                    }
+                  />
+                  <Tab 
+                    label="Income"
+                    sx={{
+                      '&.Mui-selected': {
+                        color: 'success.main',
+                      },
+                    }}
+                  />
+                  <Tab 
+                    label="Expenses"
+                    sx={{
+                      '&.Mui-selected': {
+                        color: 'error.main',
+                      },
+                    }}
+                  />
+                </Tabs>
+              </Paper>
+
+              <Fade in={showForm}>
+                <Box>
+                  {showForm && <TransactionForm onSubmit={handleAddTransaction} />}
+                </Box>
+              </Fade>
+              
+              <TransactionList 
+                transactions={filteredTransactions} 
+                onDelete={handleDeleteTransaction}
+              />
+            </>
+          )}
+
+          {/* Budgets Tab */}
+          {tab === 2 && (
+            <BudgetTracker transactions={transactions} />
+          )}
+
+          {/* Goals Tab */}
+          {tab === 3 && (
+            <FinancialGoals transactions={transactions} />
+          )}
+
+          {/* Insights Tab */}
+          {tab === 4 && (
+            <FinancialInsights transactions={transactions} />
+          )}
         </Container>
 
         <Fab
