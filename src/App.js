@@ -1,24 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { Box, Container, Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import Header from './components/Header';
+import Dashboard from './components/Dashboard';
+import TransactionList from './components/TransactionList';
+import TransactionForm from './components/TransactionForm';
+import { loadTransactions, addTransaction, deleteTransaction } from './utils/storage';
 
 function App() {
+  const [transactions, setTransactions] = useState([]);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  useEffect(() => {
+    setTransactions(loadTransactions());
+  }, []);
+
+  const handleAddTransaction = (newTransaction) => {
+    const updatedTransactions = addTransaction(newTransaction);
+    setTransactions(updatedTransactions);
+    setIsFormOpen(false);
+  };
+
+  const handleDeleteTransaction = (transactionId) => {
+    const updatedTransactions = deleteTransaction(transactionId);
+    setTransactions(updatedTransactions);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Header />
+      <Container>
+        <Dashboard transactions={transactions} />
+        <TransactionList 
+          transactions={transactions} 
+          onDelete={handleDeleteTransaction}
+        />
+        <TransactionForm
+          open={isFormOpen}
+          onClose={() => setIsFormOpen(false)}
+          onSubmit={handleAddTransaction}
+        />
+        <Fab
+          color="primary"
+          sx={{ position: 'fixed', bottom: 16, right: 16 }}
+          onClick={() => setIsFormOpen(true)}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <AddIcon />
+        </Fab>
+      </Container>
+    </Box>
   );
 }
 
