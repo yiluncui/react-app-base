@@ -42,7 +42,7 @@ const StatCard = ({ title, value, icon, color, subtitle }) => (
 );
 
 export default function Dashboard() {
-  const { transactions, categories, budgets, recurringTransactions } = useFinance();
+  const { transactions, categories, budgets, recurringTransactions, goals } = useFinance();
 
   // Calculate current month's transactions
   const currentDate = new Date();
@@ -278,6 +278,58 @@ export default function Dashboard() {
           </Box>
         </Paper>
       </Grid>
+
+      {/* Goals Summary */}
+      {goals.length > 0 && (
+        <Grid item xs={12}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              Active Goals
+            </Typography>
+            <Grid container spacing={2}>
+              {goals.map(goal => {
+                const progress = goal.type === 'savings'
+                  ? transactions
+                      .filter(t => t.type === 'income' && t.tags?.includes(`goal:${goal.id}`))
+                      .reduce((sum, t) => sum + t.amount, 0)
+                  : transactions
+                      .filter(t => t.type === 'expense' && t.category === goal.category)
+                      .reduce((sum, t) => sum + t.amount, 0);
+                
+                const progressPercent = (progress / goal.targetAmount) * 100;
+                const daysLeft = Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24));
+                
+                return (
+                  <Grid item xs={12} sm={6} md={4} key={goal.id}>
+                    <Box sx={{ mb: 2 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                        <Typography variant="subtitle2">{goal.name}</Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {daysLeft > 0 ? `${daysLeft} days left` : 'Expired'}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                        <LinearProgress
+                          variant="determinate"
+                          value={Math.min(progressPercent, 100)}
+                          sx={{ flexGrow: 1, height: 8, borderRadius: 4 }}
+                          color={progressPercent >= 100 ? 'success' : 'primary'}
+                        />
+                        <Typography variant="body2" color="text.secondary">
+                          {progressPercent.toFixed(0)}%
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" color="text.secondary">
+                        ${progress.toLocaleString()} of ${goal.targetAmount.toLocaleString()}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Paper>
+        </Grid>
+      )}
     </Grid>
   );
 }

@@ -9,6 +9,28 @@ const INITIAL_DATA = {
     { id: '2', type: 'expense', amount: 1000, category: 'Rent', date: '2024-01-02', description: 'Monthly rent', tags: ['recurring', 'housing'] },
     { id: '3', type: 'expense', amount: 200, category: 'Groceries', date: '2024-01-03', description: 'Weekly groceries', tags: ['essential'] },
   ],
+  goals: [
+    {
+      id: 'g1',
+      name: 'Emergency Fund',
+      type: 'savings',
+      targetAmount: 10000,
+      startDate: '2024-01-01',
+      deadline: '2024-12-31',
+      category: 'Savings',
+      description: 'Build emergency fund for unexpected expenses',
+    },
+    {
+      id: 'g2',
+      name: 'Reduce Food Expenses',
+      type: 'spending',
+      targetAmount: 400,
+      startDate: '2024-01-01',
+      deadline: '2024-01-31',
+      category: 'Groceries',
+      description: 'Keep monthly grocery expenses under control',
+    },
+  ],
   recurringTransactions: [
     { 
       id: 'r1',
@@ -186,11 +208,38 @@ export function FinanceProvider({ children }) {
     }));
   };
 
+  const addGoal = (goal) => {
+    const newGoal = {
+      ...goal,
+      id: uuidv4(),
+      startDate: new Date().toISOString().split('T')[0],
+    };
+    setData(prev => ({
+      ...prev,
+      goals: [...prev.goals, newGoal]
+    }));
+  };
+
+  const updateGoal = (updatedGoal) => {
+    setData(prev => ({
+      ...prev,
+      goals: prev.goals.map(g => g.id === updatedGoal.id ? updatedGoal : g)
+    }));
+  };
+
+  const deleteGoal = (goalId) => {
+    setData(prev => ({
+      ...prev,
+      goals: prev.goals.filter(g => g.id !== goalId)
+    }));
+  };
+
   const value = {
     transactions: data.transactions,
     recurringTransactions: data.recurringTransactions,
     categories: data.categories,
     budgets: data.budgets,
+    goals: data.goals,
     addTransaction,
     deleteTransaction,
     addRecurringTransaction,
@@ -198,7 +247,10 @@ export function FinanceProvider({ children }) {
     updateBudget,
     addCategory,
     addTag,
-    removeTag
+    removeTag,
+    addGoal,
+    updateGoal,
+    deleteGoal
   };
 
   return (
