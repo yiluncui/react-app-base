@@ -83,11 +83,6 @@ const theme = createTheme({
 
 const drawerWidth = 240;
 
-import AssessmentIcon from '@mui/icons-material/Assessment';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import ReportsAnalytics from './components/ReportsAnalytics';
-import BillReminders from './components/BillReminders';
-
 const menuItems = [
   { label: 'Dashboard', icon: <DashboardIcon />, id: 0 },
   { label: 'Transactions', icon: <ReceiptIcon />, id: 1 },

@@ -84,6 +84,8 @@ const BillReminders = ({ onAddTransaction }) => {
     }
   }, [reminders]);
 
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+
   const handleRequestNotificationPermission = async () => {
     if ('Notification' in window) {
       const permission = await Notification.requestPermission();
@@ -95,6 +97,10 @@ const BillReminders = ({ onAddTransaction }) => {
         });
       }
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false });
   };
 
   const handleOpenDialog = (reminder = null) => {
@@ -407,6 +413,21 @@ const BillReminders = ({ onAddTransaction }) => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Snackbar 
+        open={snackbar.open} 
+        autoHideDuration={4000} 
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert 
+          onClose={handleCloseSnackbar} 
+          severity={snackbar.severity}
+          variant="filled"
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
