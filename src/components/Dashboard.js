@@ -1,5 +1,5 @@
 import { useFinance } from '../context/FinanceContext';
-import { Paper, Typography, Grid, Box, Card, CardContent, Divider } from '@mui/material';
+import { Paper, Typography, Grid, Box, Card, CardContent, Divider, LinearProgress } from '@mui/material';
 import { 
   TrendingUp as TrendingUpIcon,
   TrendingDown as TrendingDownIcon,

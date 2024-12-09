@@ -30,7 +30,8 @@ export default function TransactionList() {
     addTransaction, 
     deleteTransaction,
     addTag,
-    removeTag
+    removeTag,
+    goals
   } = useFinance();
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,6 +47,8 @@ export default function TransactionList() {
     category: '',
     date: new Date().toISOString().split('T')[0],
     description: '',
+    tags: [],
+    goalId: '',
   });
 
   const [selectedTags, setSelectedTags] = useState([]);
@@ -77,7 +80,12 @@ export default function TransactionList() {
   }, [transactions, searchTerm, selectedType, selectedCategory, dateRange, selectedTags]);
 
   const handleAdd = () => {
-    addTransaction(newTransaction);
+    const transaction = {
+      ...newTransaction,
+      tags: newTransaction.tags || [],
+      amount: parseFloat(newTransaction.amount)
+    };
+    addTransaction(transaction);
     setOpen(false);
     setNewTransaction({
       type: 'expense',
@@ -85,6 +93,8 @@ export default function TransactionList() {
       category: '',
       date: new Date().toISOString().split('T')[0],
       description: '',
+      tags: [],
+      goalId: ''
     });
   };
 
@@ -374,7 +384,43 @@ export default function TransactionList() {
             type="date"
             value={newTransaction.date}
             onChange={(e) => setNewTransaction({ ...newTransaction, date: e.target.value })}
+            InputLabelProps={{ shrink: true }}
           />
+
+          {newTransaction.type === 'income' && goals.some(g => g.type === 'savings') && (
+            <FormControl fullWidth margin="normal">
+              <InputLabel>Link to Savings Goal</InputLabel>
+              <Select
+                value={newTransaction.goalId || ''}
+                onChange={(e) => {
+                  const goalId = e.target.value;
+                  setNewTransaction(prev => ({
+                    ...prev,
+                    goalId,
+                    tags: goalId 
+                      ? [...(prev.tags || []).filter(t => !t.startsWith('goal:')), `goal:${goalId}`]
+                      : (prev.tags || []).filter(t => !t.startsWith('goal:'))
+                  }));
+                }}
+                label="Link to Savings Goal"
+              >
+                <MenuItem value="">None</MenuItem>
+                {goals
+                  .filter(g => g.type === 'savings' && new Date(g.deadline) >= new Date())
+                  .map((goal) => {
+                    const currentAmount = transactions
+                      .filter(t => t.tags?.includes(`goal:${goal.id}`))
+                      .reduce((sum, t) => sum + t.amount, 0);
+                    const remaining = goal.targetAmount - currentAmount;
+                    return (
+                      <MenuItem key={goal.id} value={goal.id}>
+                        {goal.name} (${remaining.toLocaleString()} remaining)
+                      </MenuItem>
+                    );
+                  })}
+              </Select>
+            </FormControl>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Cancel</Button>

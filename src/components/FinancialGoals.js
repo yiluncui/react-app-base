@@ -25,8 +25,6 @@ import {
   Add as AddIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
-  Flag as FlagIcon,
-  CheckCircle as CheckCircleIcon,
 } from '@mui/icons-material';
 
 export default function FinancialGoals() {
@@ -116,7 +114,8 @@ export default function FinancialGoals() {
   };
 
   return (
-    <Box>
+    <Paper sx={{ p: 2 }}>
+      <Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography variant="h6">Financial Goals</Typography>
         <Button
@@ -273,5 +272,6 @@ export default function FinancialGoals() {
         </DialogActions>
       </Dialog>
     </Box>
+    </Paper>
   );
 }

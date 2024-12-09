@@ -73,9 +73,7 @@ function App() {
           <TabPanel value={tabValue} index={4}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <Paper sx={{ p: 2 }}>
-                  <FinancialGoals />
-                </Paper>
+                <FinancialGoals />
               </Grid>
             </Grid>
           </TabPanel>
