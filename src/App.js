@@ -11,11 +11,32 @@ import {
   createTheme,
   Snackbar,
   Alert,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListItemButton,
+  Divider,
+  useMediaQuery,
+  Toolbar,
 } from '@mui/material';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import AddIcon from '@mui/icons-material/Add';
+import MenuIcon from '@mui/icons-material/Menu';
+import RepeatIcon from '@mui/icons-material/Repeat';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import CloseIcon from '@mui/icons-material/Close';
+
 import Dashboard from './components/Dashboard';
 import TransactionList from './components/TransactionList';
 import AddTransaction from './components/AddTransaction';
 import BudgetTracker from './components/BudgetTracker';
+import RecurringTransactions from './components/RecurringTransactions';
+import FinancialGoals from './components/FinancialGoals';
 import { mockTransactions } from './data/mockData';
 
 const theme = createTheme({
@@ -24,11 +45,48 @@ const theme = createTheme({
     primary: {
       main: '#1976d2',
     },
+    secondary: {
+      main: '#dc004e',
+    },
     background: {
       default: '#f5f5f5',
+      paper: '#ffffff',
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    h6: {
+      fontWeight: 500,
+    },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
     },
   },
 });
+
+const drawerWidth = 240;
+
+const menuItems = [
+  { label: 'Dashboard', icon: <DashboardIcon />, id: 0 },
+  { label: 'Transactions', icon: <ReceiptIcon />, id: 1 },
+  { label: 'Budget', icon: <AccountBalanceWalletIcon />, id: 2 },
+  { label: 'Financial Goals', icon: <TrackChangesIcon />, id: 3 },
+  { label: 'Recurring', icon: <RepeatIcon />, id: 4 },
+  { label: 'Add Transaction', icon: <AddIcon />, id: 5 },
+];
 
 function TabPanel({ children, value, index }) {
   return value === index && <Box sx={{ py: 3 }}>{children}</Box>;
@@ -38,6 +96,8 @@ function App() {
   const [transactions, setTransactions] = useState([]);
   const [currentTab, setCurrentTab] = useState(0);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     const savedTransactions = localStorage.getItem('transactions');
@@ -75,54 +135,127 @@ function App() {
     setSnackbar({ ...snackbar, open: false });
   };
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawer = (
+    <Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
+        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          Finance Tracker
+        </Typography>
+        {isMobile && (
+          <IconButton onClick={handleDrawerToggle}>
+            <CloseIcon />
+          </IconButton>
+        )}
+      </Box>
+      <Divider />
+      <List>
+        {menuItems.map((item) => (
+          <ListItem key={item.id} disablePadding>
+            <ListItemButton
+              selected={currentTab === item.id}
+              onClick={() => {
+                setCurrentTab(item.id);
+                if (isMobile) setMobileOpen(false);
+              }}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'background.default' }}>
-        <AppBar position="static">
-          <Container>
-            <Typography variant="h6" component="div" sx={{ py: 2 }}>
-              Personal Finance Tracker
-            </Typography>
-          </Container>
-        </AppBar>
-        
-        <Container sx={{ mt: 4 }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: 'background.paper', borderRadius: '4px 4px 0 0' }}>
-            <Tabs 
-              value={currentTab} 
-              onChange={(e, newValue) => setCurrentTab(newValue)}
-              variant="scrollable"
-              scrollButtons="auto"
+      <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+        <AppBar
+          position="fixed"
+          sx={{
+            width: { md: `calc(100% - ${drawerWidth}px)` },
+            ml: { md: `${drawerWidth}px` },
+          }}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { md: 'none' } }}
             >
-              <Tab label="Dashboard" />
-              <Tab label="Transactions" />
-              <Tab label="Budget" />
-              <Tab label="Add Transaction" />
-            </Tabs>
-          </Box>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              {menuItems[currentTab].label}
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-          <Box sx={{ bgcolor: 'background.paper', borderRadius: '0 0 4px 4px', p: 2 }}>
-            <TabPanel value={currentTab} index={0}>
-              <Dashboard transactions={transactions} />
-            </TabPanel>
+        <Box
+          component="nav"
+          sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
+        >
+          <Drawer
+            variant={isMobile ? 'temporary' : 'permanent'}
+            open={isMobile ? mobileOpen : true}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Box>
 
-            <TabPanel value={currentTab} index={1}>
-              <TransactionList 
-                transactions={transactions}
-                onDeleteTransaction={handleDeleteTransaction}
-              />
-            </TabPanel>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            width: { md: `calc(100% - ${drawerWidth}px)` },
+            mt: 8,
+            bgcolor: 'background.default',
+          }}
+        >
+          <TabPanel value={currentTab} index={0}>
+            <Dashboard transactions={transactions} />
+          </TabPanel>
 
-            <TabPanel value={currentTab} index={2}>
-              <BudgetTracker transactions={transactions} />
-            </TabPanel>
+          <TabPanel value={currentTab} index={1}>
+            <TransactionList 
+              transactions={transactions}
+              onDeleteTransaction={handleDeleteTransaction}
+            />
+          </TabPanel>
 
-            <TabPanel value={currentTab} index={3}>
-              <AddTransaction onAddTransaction={handleAddTransaction} />
-            </TabPanel>
-          </Box>
-        </Container>
+          <TabPanel value={currentTab} index={2}>
+            <BudgetTracker transactions={transactions} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={3}>
+            <FinancialGoals transactions={transactions} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={4}>
+            <RecurringTransactions onAddTransaction={handleAddTransaction} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={5}>
+            <AddTransaction onAddTransaction={handleAddTransaction} />
+          </TabPanel>
+        </Box>
       </Box>
 
       <Snackbar 
