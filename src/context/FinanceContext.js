@@ -5,9 +5,33 @@ const FinanceContext = createContext();
 
 const INITIAL_DATA = {
   transactions: [
-    { id: '1', type: 'income', amount: 5000, category: 'Salary', date: '2024-01-01', description: 'Monthly salary' },
-    { id: '2', type: 'expense', amount: 1000, category: 'Rent', date: '2024-01-02', description: 'Monthly rent' },
-    { id: '3', type: 'expense', amount: 200, category: 'Groceries', date: '2024-01-03', description: 'Weekly groceries' },
+    { id: '1', type: 'income', amount: 5000, category: 'Salary', date: '2024-01-01', description: 'Monthly salary', tags: ['recurring'] },
+    { id: '2', type: 'expense', amount: 1000, category: 'Rent', date: '2024-01-02', description: 'Monthly rent', tags: ['recurring', 'housing'] },
+    { id: '3', type: 'expense', amount: 200, category: 'Groceries', date: '2024-01-03', description: 'Weekly groceries', tags: ['essential'] },
+  ],
+  recurringTransactions: [
+    { 
+      id: 'r1',
+      type: 'income',
+      amount: 5000,
+      category: 'Salary',
+      description: 'Monthly salary',
+      frequency: 'monthly',
+      startDate: '2024-01-01',
+      lastGenerated: '2024-01-01',
+      tags: ['recurring']
+    },
+    {
+      id: 'r2',
+      type: 'expense',
+      amount: 1000,
+      category: 'Rent',
+      description: 'Monthly rent',
+      frequency: 'monthly',
+      startDate: '2024-01-02',
+      lastGenerated: '2024-01-02',
+      tags: ['recurring', 'housing']
+    }
   ],
   categories: {
     income: ['Salary', 'Freelance', 'Investments'],
@@ -22,10 +46,58 @@ const INITIAL_DATA = {
   }
 };
 
+const generateRecurringTransactions = (data, currentDate = new Date()) => {
+  const newTransactions = [];
+  
+  data.recurringTransactions.forEach(recurring => {
+    const lastDate = new Date(recurring.lastGenerated);
+    const startDate = new Date(recurring.startDate);
+    
+    if (startDate > currentDate) return;
+
+    let nextDate = new Date(lastDate);
+    
+    while (nextDate <= currentDate) {
+      if (recurring.frequency === 'monthly') {
+        nextDate.setMonth(nextDate.getMonth() + 1);
+      } else if (recurring.frequency === 'weekly') {
+        nextDate.setDate(nextDate.getDate() + 7);
+      }
+
+      if (nextDate <= currentDate) {
+        newTransactions.push({
+          id: uuidv4(),
+          type: recurring.type,
+          amount: recurring.amount,
+          category: recurring.category,
+          description: recurring.description,
+          date: nextDate.toISOString().split('T')[0],
+          tags: recurring.tags,
+          recurringId: recurring.id
+        });
+      }
+    }
+  });
+
+  return newTransactions;
+};
+
 export function FinanceProvider({ children }) {
   const [data, setData] = useState(() => {
     const savedData = localStorage.getItem('financeData');
-    return savedData ? JSON.parse(savedData) : INITIAL_DATA;
+    const initialData = savedData ? JSON.parse(savedData) : INITIAL_DATA;
+    
+    // Generate any missing recurring transactions on load
+    const newTransactions = generateRecurringTransactions(initialData);
+    if (newTransactions.length > 0) {
+      initialData.transactions = [...initialData.transactions, ...newTransactions];
+      initialData.recurringTransactions = initialData.recurringTransactions.map(rt => ({
+        ...rt,
+        lastGenerated: new Date().toISOString().split('T')[0]
+      }));
+    }
+    
+    return initialData;
   });
 
   useEffect(() => {
@@ -35,7 +107,7 @@ export function FinanceProvider({ children }) {
   const addTransaction = (transaction) => {
     setData(prev => ({
       ...prev,
-      transactions: [...prev.transactions, { ...transaction, id: uuidv4() }]
+      transactions: [...prev.transactions, { ...transaction, id: uuidv4(), tags: transaction.tags || [] }]
     }));
   };
 
@@ -43,6 +115,35 @@ export function FinanceProvider({ children }) {
     setData(prev => ({
       ...prev,
       transactions: prev.transactions.filter(t => t.id !== id)
+    }));
+  };
+
+  const addRecurringTransaction = (transaction) => {
+    const recurringId = uuidv4();
+    const firstTransaction = {
+      ...transaction,
+      id: uuidv4(),
+      tags: [...(transaction.tags || []), 'recurring'],
+      recurringId
+    };
+
+    setData(prev => ({
+      ...prev,
+      transactions: [...prev.transactions, firstTransaction],
+      recurringTransactions: [...prev.recurringTransactions, {
+        ...transaction,
+        id: recurringId,
+        tags: [...(transaction.tags || []), 'recurring'],
+        lastGenerated: transaction.startDate
+      }]
+    }));
+  };
+
+  const deleteRecurringTransaction = (recurringId) => {
+    setData(prev => ({
+      ...prev,
+      recurringTransactions: prev.recurringTransactions.filter(rt => rt.id !== recurringId),
+      transactions: prev.transactions.filter(t => t.recurringId !== recurringId)
     }));
   };
 
@@ -63,14 +164,41 @@ export function FinanceProvider({ children }) {
     }));
   };
 
+  const addTag = (transactionId, tag) => {
+    setData(prev => ({
+      ...prev,
+      transactions: prev.transactions.map(t => 
+        t.id === transactionId 
+          ? { ...t, tags: [...new Set([...(t.tags || []), tag])] }
+          : t
+      )
+    }));
+  };
+
+  const removeTag = (transactionId, tag) => {
+    setData(prev => ({
+      ...prev,
+      transactions: prev.transactions.map(t => 
+        t.id === transactionId 
+          ? { ...t, tags: (t.tags || []).filter(t => t !== tag) }
+          : t
+      )
+    }));
+  };
+
   const value = {
     transactions: data.transactions,
+    recurringTransactions: data.recurringTransactions,
     categories: data.categories,
     budgets: data.budgets,
     addTransaction,
     deleteTransaction,
+    addRecurringTransaction,
+    deleteRecurringTransaction,
     updateBudget,
-    addCategory
+    addCategory,
+    addTag,
+    removeTag
   };
 
   return (

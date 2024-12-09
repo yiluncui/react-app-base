@@ -41,6 +41,19 @@ export default function TransactionList() {
     description: '',
   });
 
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [tagInput, setTagInput] = useState('');
+
+  const availableTags = useMemo(() => {
+    const tags = new Set();
+    transactions.forEach(t => {
+      if (t.tags) {
+        t.tags.forEach(tag => tags.add(tag));
+      }
+    });
+    return Array.from(tags);
+  }, [transactions]);
+
   const filteredTransactions = useMemo(() => {
     return transactions.filter(transaction => {
       const matchesSearch = transaction.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -49,8 +62,10 @@ export default function TransactionList() {
       const matchesCategory = selectedCategory === 'all' || transaction.category === selectedCategory;
       const matchesDateRange = (!dateRange.start || transaction.date >= dateRange.start) &&
         (!dateRange.end || transaction.date <= dateRange.end);
+      const matchesTags = selectedTags.length === 0 || 
+        (transaction.tags && selectedTags.every(tag => transaction.tags.includes(tag)));
       
-      return matchesSearch && matchesType && matchesCategory && matchesDateRange;
+      return matchesSearch && matchesType && matchesCategory && matchesDateRange && matchesTags;
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [transactions, searchTerm, selectedType, selectedCategory, dateRange]);
 
@@ -82,7 +97,7 @@ export default function TransactionList() {
         </IconButton>
       </Box>
 
-      <Grid container spacing={2} sx={{ mb: 3 }}>
+      <Grid container spacing={2} sx={{ mb: 2 }}>
         <Grid item xs={12} sm={6} md={4}>
           <TextField
             fullWidth
@@ -91,6 +106,30 @@ export default function TransactionList() {
             onChange={(e) => setSearchTerm(e.target.value)}
             size="small"
           />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <FormControl fullWidth size="small">
+            <InputLabel>Filter by tags</InputLabel>
+            <Select
+              multiple
+              value={selectedTags}
+              onChange={(e) => setSelectedTags(e.target.value)}
+              label="Filter by tags"
+              renderValue={(selected) => (
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} size="small" />
+                  ))}
+                </Box>
+              )}
+            >
+              {availableTags.map((tag) => (
+                <MenuItem key={tag} value={tag}>
+                  {tag}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item xs={12} sm={6} md={2}>
           <FormControl fullWidth size="small">
@@ -195,20 +234,61 @@ export default function TransactionList() {
           <ListItem
             key={transaction.id}
             secondaryAction={
-              <IconButton edge="end" onClick={() => deleteTransaction(transaction.id)}>
-                <DeleteIcon />
-              </IconButton>
+              <Box>
+                {transaction.recurringId && (
+                  <IconButton size="small" sx={{ mr: 1 }}>
+                    <RepeatIcon fontSize="small" color="action" />
+                  </IconButton>
+                )}
+                <IconButton edge="end" onClick={() => deleteTransaction(transaction.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
             }
           >
             <ListItemText
-              primary={`${transaction.description} - ${transaction.category}`}
+              primary={
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                  <Typography component="span">
+                    {transaction.description} - {transaction.category}
+                  </Typography>
+                </Box>
+              }
               secondary={
                 <>
-                  <Typography component="span" color={transaction.type === 'income' ? 'success.main' : 'error.main'}>
-                    ${transaction.amount}
-                  </Typography>
-                  {' - '}
-                  {transaction.date}
+                  <Box sx={{ mb: 0.5 }}>
+                    <Typography component="span" color={transaction.type === 'income' ? 'success.main' : 'error.main'}>
+                      ${transaction.amount}
+                    </Typography>
+                    {' - '}
+                    {transaction.date}
+                  </Box>
+                  <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', alignItems: 'center' }}>
+                    {transaction.tags?.map((tag) => (
+                      <Chip
+                        key={tag}
+                        label={tag}
+                        size="small"
+                        onDelete={() => removeTag(transaction.id, tag)}
+                      />
+                    ))}
+                    <Box component="form" onSubmit={(e) => {
+                      e.preventDefault();
+                      if (tagInput.trim()) {
+                        addTag(transaction.id, tagInput.trim());
+                        setTagInput('');
+                      }
+                    }}>
+                      <TextField
+                        size="small"
+                        placeholder="Add tag"
+                        value={tagInput}
+                        onChange={(e) => setTagInput(e.target.value)}
+                        variant="standard"
+                        sx={{ width: 100 }}
+                      />
+                    </Box>
+                  </Box>
                 </>
               }
             />

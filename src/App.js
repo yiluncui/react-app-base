@@ -5,6 +5,7 @@ import TransactionList from './components/TransactionList';
 import BudgetTracker from './components/BudgetTracker';
 import CategoryManager from './components/CategoryManager';
 import MonthlyTrends from './components/MonthlyTrends';
+import RecurringTransactions from './components/RecurringTransactions';
 import { useState } from 'react';
 
 function TabPanel({ children, value, index }) {
@@ -37,6 +38,7 @@ function App() {
             >
               <Tab label="Overview" />
               <Tab label="Transactions" />
+              <Tab label="Recurring" />
               <Tab label="Budget" />
               <Tab label="Categories" />
               <Tab label="Trends" />
@@ -52,6 +54,10 @@ function App() {
           </TabPanel>
 
           <TabPanel value={tabValue} index={2}>
+            <RecurringTransactions />
+          </TabPanel>
+
+          <TabPanel value={tabValue} index={3}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <BudgetTracker />
@@ -59,7 +65,7 @@ function App() {
             </Grid>
           </TabPanel>
 
-          <TabPanel value={tabValue} index={3}>
+          <TabPanel value={tabValue} index={4}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <CategoryManager />
@@ -67,7 +73,7 @@ function App() {
             </Grid>
           </TabPanel>
 
-          <TabPanel value={tabValue} index={4}>
+          <TabPanel value={tabValue} index={5}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <MonthlyTrends />
