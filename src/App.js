@@ -32,6 +32,8 @@ import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import CloseIcon from '@mui/icons-material/Close';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import SettingsIcon from '@mui/icons-material/Settings';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
 import Dashboard from './components/Dashboard';
 import TransactionList from './components/TransactionList';
@@ -41,6 +43,7 @@ import RecurringTransactions from './components/RecurringTransactions';
 import FinancialGoals from './components/FinancialGoals';
 import ReportsAnalytics from './components/ReportsAnalytics';
 import BillReminders from './components/BillReminders';
+import Settings from './components/Settings';
 import { mockTransactions } from './data/mockData';
 
 const theme = createTheme({
@@ -92,6 +95,7 @@ const menuItems = [
   { label: 'Bill Reminders', icon: <NotificationsActiveIcon />, id: 5 },
   { label: 'Reports', icon: <AssessmentIcon />, id: 6 },
   { label: 'Add Transaction', icon: <AddIcon />, id: 7 },
+  { label: 'Settings', icon: <SettingsIcon />, id: 8 },
 ];
 
 function TabPanel({ children, value, index }) {
@@ -268,6 +272,10 @@ function App() {
 
           <TabPanel value={currentTab} index={7}>
             <AddTransaction onAddTransaction={handleAddTransaction} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={8}>
+            <Settings />
           </TabPanel>
         </Box>
       </Box>
