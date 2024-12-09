@@ -215,7 +215,7 @@ export default function GoalsManager({ open, onClose, transactions }) {
                         </Typography>
                         <Typography variant="body2" color="text.secondary" gutterBottom>
                           {GOAL_TYPES.find(t => t.value === goal.type)?.label}
-                          {goal.category && ` - ${goal.category}`}
+                          {goal.category && ' - ' + goal.category}
                         </Typography>
                       </Box>
                       <IconButton
@@ -249,7 +249,7 @@ export default function GoalsManager({ open, onClose, transactions }) {
                           variant="body2"
                           color={progress.isCompleted ? 'success.main' : 'text.secondary'}
                         >
-                          {progress.isCompleted ? 'Completed!' : `$${progress.remaining.toFixed(2)} to go`}
+                          {progress.isCompleted ? 'Completed!' : '$' + progress.remaining.toFixed(2) + ' to go'}
                         </Typography>
                       </Box>
                     </Box>

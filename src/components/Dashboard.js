@@ -67,7 +67,7 @@ export default function Dashboard({ transactions }) {
 
     const monthlyData = transactions.reduce((acc, t) => {
       const date = new Date(t.date);
-      const monthYear = \`\${MONTHS[date.getMonth()]} \${date.getFullYear()}\`;
+      const monthYear = MONTHS[date.getMonth()] + ' ' + date.getFullYear();
       if (!acc[monthYear]) {
         acc[monthYear] = { income: 0, expenses: 0 };
       }
@@ -103,7 +103,7 @@ export default function Dashboard({ transactions }) {
     datasets: [{
       data: Object.values(stats.expensesByCategory),
       backgroundColor: Object.keys(stats.expensesByCategory).map((_, i) => 
-        \`hsl(\${(i * 360) / Object.keys(stats.expensesByCategory).length}, 70%, 50%)\`
+        'hsl(' + ((i * 360) / Object.keys(stats.expensesByCategory).length) + ', 70%, 50%)'
       ),
     }],
   };

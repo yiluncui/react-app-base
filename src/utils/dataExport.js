@@ -19,7 +19,7 @@ export const exportData = () => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = \`finance_data_\${new Date().toISOString().split('T')[0]}.json\`;
+  link.download = 'finance_data_' + new Date().toISOString().split('T')[0] + '.json';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -59,7 +59,7 @@ export const importData = (jsonData) => {
   } catch (error) {
     return {
       success: false,
-      message: \`Import failed: \${error.message}\`
+      message: 'Import failed: ' + error.message
     };
   }
 };

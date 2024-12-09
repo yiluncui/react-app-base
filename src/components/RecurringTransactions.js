@@ -85,7 +85,7 @@ export default function RecurringTransactions({ open, onClose }) {
   const getNextDateLabel = (transaction) => {
     const nextDate = getNextOccurrence(transaction.startDate, transaction.frequency);
     if (!nextDate) return 'No upcoming';
-    return \`Next: \${nextDate.toLocaleDateString()}\`;
+    return 'Next: ' + nextDate.toLocaleDateString();
   };
 
   return (
