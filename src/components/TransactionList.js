@@ -21,10 +21,17 @@ import {
   Box,
   Chip,
 } from '@mui/material';
-import { Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
+import { Delete as DeleteIcon, Add as AddIcon, Repeat as RepeatIcon } from '@mui/icons-material';
 
 export default function TransactionList() {
-  const { transactions, categories, addTransaction, deleteTransaction } = useFinance();
+  const { 
+    transactions, 
+    categories, 
+    addTransaction, 
+    deleteTransaction,
+    addTag,
+    removeTag
+  } = useFinance();
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
@@ -42,7 +49,7 @@ export default function TransactionList() {
   });
 
   const [selectedTags, setSelectedTags] = useState([]);
-  const [tagInput, setTagInput] = useState('');
+  const [tagInputs, setTagInputs] = useState({});
 
   const availableTags = useMemo(() => {
     const tags = new Set();
@@ -67,7 +74,7 @@ export default function TransactionList() {
       
       return matchesSearch && matchesType && matchesCategory && matchesDateRange && matchesTags;
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
-  }, [transactions, searchTerm, selectedType, selectedCategory, dateRange]);
+  }, [transactions, searchTerm, selectedType, selectedCategory, dateRange, selectedTags]);
 
   const handleAdd = () => {
     addTransaction(newTransaction);
@@ -274,16 +281,20 @@ export default function TransactionList() {
                     ))}
                     <Box component="form" onSubmit={(e) => {
                       e.preventDefault();
-                      if (tagInput.trim()) {
-                        addTag(transaction.id, tagInput.trim());
-                        setTagInput('');
+                      const input = tagInputs[transaction.id] || '';
+                      if (input.trim()) {
+                        addTag(transaction.id, input.trim());
+                        setTagInputs(prev => ({ ...prev, [transaction.id]: '' }));
                       }
                     }}>
                       <TextField
                         size="small"
                         placeholder="Add tag"
-                        value={tagInput}
-                        onChange={(e) => setTagInput(e.target.value)}
+                        value={tagInputs[transaction.id] || ''}
+                        onChange={(e) => setTagInputs(prev => ({ 
+                          ...prev, 
+                          [transaction.id]: e.target.value 
+                        }))}
                         variant="standard"
                         sx={{ width: 100 }}
                       />

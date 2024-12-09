@@ -1,5 +1,7 @@
 import { Container, CssBaseline, Typography, Box, Grid, Paper, Tab, Tabs } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { FinanceProvider } from './context/FinanceContext';
+import theme from './theme';
 import Dashboard from './components/Dashboard';
 import TransactionList from './components/TransactionList';
 import BudgetTracker from './components/BudgetTracker';
@@ -16,10 +18,11 @@ function App() {
   const [tabValue, setTabValue] = useState(0);
 
   return (
-    <FinanceProvider>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        <Box sx={{ my: 4 }}>
+    <ThemeProvider theme={theme}>
+      <FinanceProvider>
+        <CssBaseline />
+        <Container maxWidth="lg">
+          <Box sx={{ my: 4 }}>
           <Paper sx={{ p: 3, mb: 3 }}>
             <Typography variant="h4" component="h1" gutterBottom>
               Personal Finance Tracker
@@ -83,6 +86,7 @@ function App() {
         </Box>
       </Container>
     </FinanceProvider>
+    </ThemeProvider>
   );
 }
 
