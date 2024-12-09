@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, CssBaseline, Typography, Box } from '@mui/material';
+import { FinanceProvider } from './context/FinanceContext';
+import Dashboard from './components/Dashboard';
+import TransactionList from './components/TransactionList';
+import BudgetTracker from './components/BudgetTracker';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FinanceProvider>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Box sx={{ my: 4 }}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Personal Finance Tracker
+          </Typography>
+          <Dashboard />
+          <TransactionList />
+          <BudgetTracker />
+        </Box>
+      </Container>
+    </FinanceProvider>
   );
 }
 
