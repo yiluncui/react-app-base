@@ -30,6 +30,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import CloseIcon from '@mui/icons-material/Close';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 import Dashboard from './components/Dashboard';
 import TransactionList from './components/TransactionList';
@@ -37,6 +39,8 @@ import AddTransaction from './components/AddTransaction';
 import BudgetTracker from './components/BudgetTracker';
 import RecurringTransactions from './components/RecurringTransactions';
 import FinancialGoals from './components/FinancialGoals';
+import ReportsAnalytics from './components/ReportsAnalytics';
+import BillReminders from './components/BillReminders';
 import { mockTransactions } from './data/mockData';
 
 const theme = createTheme({
@@ -79,13 +83,20 @@ const theme = createTheme({
 
 const drawerWidth = 240;
 
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import ReportsAnalytics from './components/ReportsAnalytics';
+import BillReminders from './components/BillReminders';
+
 const menuItems = [
   { label: 'Dashboard', icon: <DashboardIcon />, id: 0 },
   { label: 'Transactions', icon: <ReceiptIcon />, id: 1 },
   { label: 'Budget', icon: <AccountBalanceWalletIcon />, id: 2 },
   { label: 'Financial Goals', icon: <TrackChangesIcon />, id: 3 },
   { label: 'Recurring', icon: <RepeatIcon />, id: 4 },
-  { label: 'Add Transaction', icon: <AddIcon />, id: 5 },
+  { label: 'Bill Reminders', icon: <NotificationsActiveIcon />, id: 5 },
+  { label: 'Reports', icon: <AssessmentIcon />, id: 6 },
+  { label: 'Add Transaction', icon: <AddIcon />, id: 7 },
 ];
 
 function TabPanel({ children, value, index }) {
@@ -253,6 +264,14 @@ function App() {
           </TabPanel>
 
           <TabPanel value={currentTab} index={5}>
+            <BillReminders onAddTransaction={handleAddTransaction} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={6}>
+            <ReportsAnalytics transactions={transactions} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={7}>
             <AddTransaction onAddTransaction={handleAddTransaction} />
           </TabPanel>
         </Box>
