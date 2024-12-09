@@ -9,6 +9,7 @@ import CategoryManager from './components/CategoryManager';
 import MonthlyTrends from './components/MonthlyTrends';
 import RecurringTransactions from './components/RecurringTransactions';
 import FinancialGoals from './components/FinancialGoals';
+import FinancialInsights from './components/FinancialInsights';
 import { useState } from 'react';
 
 function TabPanel({ children, value, index }) {
@@ -41,6 +42,7 @@ function App() {
               scrollButtons="auto"
             >
               <Tab label="Overview" />
+              <Tab label="Insights" />
               <Tab label="Transactions" />
               <Tab label="Recurring" />
               <Tab label="Budget" />
@@ -55,14 +57,20 @@ function App() {
           </TabPanel>
 
           <TabPanel value={tabValue} index={1}>
-            <TransactionList />
+            <Paper sx={{ p: 2 }}>
+              <FinancialInsights />
+            </Paper>
           </TabPanel>
 
           <TabPanel value={tabValue} index={2}>
-            <RecurringTransactions />
+            <TransactionList />
           </TabPanel>
 
           <TabPanel value={tabValue} index={3}>
+            <RecurringTransactions />
+          </TabPanel>
+
+          <TabPanel value={tabValue} index={4}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <BudgetTracker />
@@ -70,7 +78,7 @@ function App() {
             </Grid>
           </TabPanel>
 
-          <TabPanel value={tabValue} index={4}>
+          <TabPanel value={tabValue} index={5}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <FinancialGoals />
@@ -78,7 +86,7 @@ function App() {
             </Grid>
           </TabPanel>
 
-          <TabPanel value={tabValue} index={5}>
+          <TabPanel value={tabValue} index={6}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <CategoryManager />
@@ -86,7 +94,7 @@ function App() {
             </Grid>
           </TabPanel>
 
-          <TabPanel value={tabValue} index={6}>
+          <TabPanel value={tabValue} index={7}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <MonthlyTrends />
