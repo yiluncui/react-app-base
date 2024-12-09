@@ -34,6 +34,8 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 
 import Dashboard from './components/Dashboard';
 import TransactionList from './components/TransactionList';
@@ -44,6 +46,8 @@ import FinancialGoals from './components/FinancialGoals';
 import ReportsAnalytics from './components/ReportsAnalytics';
 import BillReminders from './components/BillReminders';
 import Settings from './components/Settings';
+import InvestmentPortfolio from './components/InvestmentPortfolio';
+import FinancialInsights from './components/FinancialInsights';
 import { mockTransactions } from './data/mockData';
 
 const theme = createTheme({
@@ -91,11 +95,13 @@ const menuItems = [
   { label: 'Transactions', icon: <ReceiptIcon />, id: 1 },
   { label: 'Budget', icon: <AccountBalanceWalletIcon />, id: 2 },
   { label: 'Financial Goals', icon: <TrackChangesIcon />, id: 3 },
-  { label: 'Recurring', icon: <RepeatIcon />, id: 4 },
-  { label: 'Bill Reminders', icon: <NotificationsActiveIcon />, id: 5 },
-  { label: 'Reports', icon: <AssessmentIcon />, id: 6 },
-  { label: 'Add Transaction', icon: <AddIcon />, id: 7 },
-  { label: 'Settings', icon: <SettingsIcon />, id: 8 },
+  { label: 'Investments', icon: <ShowChartIcon />, id: 4 },
+  { label: 'Insights', icon: <TipsAndUpdatesIcon />, id: 5 },
+  { label: 'Recurring', icon: <RepeatIcon />, id: 6 },
+  { label: 'Bill Reminders', icon: <NotificationsActiveIcon />, id: 7 },
+  { label: 'Reports', icon: <AssessmentIcon />, id: 8 },
+  { label: 'Add Transaction', icon: <AddIcon />, id: 9 },
+  { label: 'Settings', icon: <SettingsIcon />, id: 10 },
 ];
 
 function TabPanel({ children, value, index }) {
@@ -259,22 +265,34 @@ function App() {
           </TabPanel>
 
           <TabPanel value={currentTab} index={4}>
-            <RecurringTransactions onAddTransaction={handleAddTransaction} />
+            <InvestmentPortfolio />
           </TabPanel>
 
           <TabPanel value={currentTab} index={5}>
-            <BillReminders onAddTransaction={handleAddTransaction} />
+            <FinancialInsights 
+              transactions={transactions}
+              budgets={JSON.parse(localStorage.getItem('budgets') || '{}')}
+              goals={JSON.parse(localStorage.getItem('financialGoals') || '[]')}
+            />
           </TabPanel>
 
           <TabPanel value={currentTab} index={6}>
-            <ReportsAnalytics transactions={transactions} />
+            <RecurringTransactions onAddTransaction={handleAddTransaction} />
           </TabPanel>
 
           <TabPanel value={currentTab} index={7}>
-            <AddTransaction onAddTransaction={handleAddTransaction} />
+            <BillReminders onAddTransaction={handleAddTransaction} />
           </TabPanel>
 
           <TabPanel value={currentTab} index={8}>
+            <ReportsAnalytics transactions={transactions} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={9}>
+            <AddTransaction onAddTransaction={handleAddTransaction} />
+          </TabPanel>
+
+          <TabPanel value={currentTab} index={10}>
             <Settings />
           </TabPanel>
         </Box>

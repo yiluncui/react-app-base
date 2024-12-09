@@ -826,3 +826,336 @@ src/components/Settings.js
   Line 15:3:  'ListItemSecondaryAction' is defined but never used  no-unused-vars
 
 webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/App.js
+  Line 3:3:   'Container' is defined but never used            no-unused-vars
+  Line 6:3:   'Tab' is defined but never used                  no-unused-vars
+  Line 7:3:   'Tabs' is defined but never used                 no-unused-vars
+  Line 36:8:  'AccountBalanceIcon' is defined but never used   no-unused-vars
+  Line 37:8:  'ShowChartIcon' is defined but never used        no-unused-vars
+  Line 38:8:  'TipsAndUpdatesIcon' is defined but never used   no-unused-vars
+  Line 49:8:  'InvestmentPortfolio' is defined but never used  no-unused-vars
+  Line 50:8:  'FinancialInsights' is defined but never used    no-unused-vars
+
+src/components/BillReminders.js
+  Line 4:3:     'Paper' is defined but never used      no-unused-vars
+  Line 19:3:    'Switch' is defined but never used     no-unused-vars
+  Line 32:8:    'ErrorIcon' is defined but never used  no-unused-vars
+  Line 182:11:  Expected a default case                default-case
+
+src/components/BudgetTracker.js
+  Line 99:6:  React Hook useMemo has a missing dependency: 'calculateSpending'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/FinancialGoals.js
+  Line 25:8:  'TrendingUpIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 7:3:    'Card' is defined but never used                                                                                     no-unused-vars
+  Line 8:3:    'CardContent' is defined but never used                                                                              no-unused-vars
+  Line 21:3:   'Button' is defined but never used                                                                                   no-unused-vars
+  Line 29:8:   'AccountBalanceIcon' is defined but never used                                                                       no-unused-vars
+  Line 133:6:  React Hook useEffect has a missing dependency: 'generateInsights'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/InvestmentPortfolio.js
+  Line 8:3:    'Card' is defined but never used                   no-unused-vars
+  Line 9:3:    'CardContent' is defined but never used            no-unused-vars
+  Line 49:8:   'EditIcon' is defined but never used               no-unused-vars
+  Line 91:10:  'editItem' is assigned a value but never used      no-unused-vars
+  Line 95:10:  'dateRange' is assigned a value but never used     no-unused-vars
+  Line 95:21:  'setDateRange' is assigned a value but never used  no-unused-vars
+
+src/components/RecurringTransactions.js
+  Line 12:3:  'Grid' is defined but never used  no-unused-vars
+
+src/components/ReportsAnalytics.js
+  Line 12:3:   'Divider' is defined but never used                     no-unused-vars
+  Line 15:3:   'IconButton' is defined but never used                  no-unused-vars
+  Line 16:3:   'Tooltip' is defined but never used                     no-unused-vars
+  Line 31:16:  'Bar' is defined but never used                         no-unused-vars
+  Line 35:8:   'InfoIcon' is defined but never used                    no-unused-vars
+  Line 60:10:  'selectedMetric' is assigned a value but never used     no-unused-vars
+  Line 60:26:  'setSelectedMetric' is assigned a value but never used  no-unused-vars
+
+src/components/Settings.js
+  Line 11:3:  'Divider' is defined but never used                  no-unused-vars
+  Line 15:3:  'ListItemSecondaryAction' is defined but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/App.js
+  Line 3:3:   'Container' is defined but never used            no-unused-vars
+  Line 6:3:   'Tab' is defined but never used                  no-unused-vars
+  Line 7:3:   'Tabs' is defined but never used                 no-unused-vars
+  Line 36:8:  'AccountBalanceIcon' is defined but never used   no-unused-vars
+  Line 37:8:  'ShowChartIcon' is defined but never used        no-unused-vars
+  Line 38:8:  'TipsAndUpdatesIcon' is defined but never used   no-unused-vars
+  Line 49:8:  'InvestmentPortfolio' is defined but never used  no-unused-vars
+  Line 50:8:  'FinancialInsights' is defined but never used    no-unused-vars
+
+src/components/BillReminders.js
+  Line 4:3:     'Paper' is defined but never used      no-unused-vars
+  Line 19:3:    'Switch' is defined but never used     no-unused-vars
+  Line 32:8:    'ErrorIcon' is defined but never used  no-unused-vars
+  Line 182:11:  Expected a default case                default-case
+
+src/components/BudgetTracker.js
+  Line 99:6:  React Hook useMemo has a missing dependency: 'calculateSpending'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/FinancialGoals.js
+  Line 25:8:  'TrendingUpIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 7:3:    'Card' is defined but never used                                                                                     no-unused-vars
+  Line 8:3:    'CardContent' is defined but never used                                                                              no-unused-vars
+  Line 21:3:   'Button' is defined but never used                                                                                   no-unused-vars
+  Line 29:8:   'AccountBalanceIcon' is defined but never used                                                                       no-unused-vars
+  Line 133:6:  React Hook useEffect has a missing dependency: 'generateInsights'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/InvestmentPortfolio.js
+  Line 8:3:    'Card' is defined but never used                   no-unused-vars
+  Line 9:3:    'CardContent' is defined but never used            no-unused-vars
+  Line 49:8:   'EditIcon' is defined but never used               no-unused-vars
+  Line 91:10:  'editItem' is assigned a value but never used      no-unused-vars
+  Line 95:10:  'dateRange' is assigned a value but never used     no-unused-vars
+  Line 95:21:  'setDateRange' is assigned a value but never used  no-unused-vars
+
+src/components/RecurringTransactions.js
+  Line 12:3:  'Grid' is defined but never used  no-unused-vars
+
+src/components/ReportsAnalytics.js
+  Line 12:3:   'Divider' is defined but never used                     no-unused-vars
+  Line 15:3:   'IconButton' is defined but never used                  no-unused-vars
+  Line 16:3:   'Tooltip' is defined but never used                     no-unused-vars
+  Line 31:16:  'Bar' is defined but never used                         no-unused-vars
+  Line 35:8:   'InfoIcon' is defined but never used                    no-unused-vars
+  Line 60:10:  'selectedMetric' is assigned a value but never used     no-unused-vars
+  Line 60:26:  'setSelectedMetric' is assigned a value but never used  no-unused-vars
+
+src/components/Settings.js
+  Line 11:3:  'Divider' is defined but never used                  no-unused-vars
+  Line 15:3:  'ListItemSecondaryAction' is defined but never used  no-unused-vars
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/App.js
+  Line 3:3:   'Container' is defined but never used            no-unused-vars
+  Line 6:3:   'Tab' is defined but never used                  no-unused-vars
+  Line 7:3:   'Tabs' is defined but never used                 no-unused-vars
+  Line 36:8:  'AccountBalanceIcon' is defined but never used   no-unused-vars
+  Line 49:8:  'InvestmentPortfolio' is defined but never used  no-unused-vars
+  Line 50:8:  'FinancialInsights' is defined but never used    no-unused-vars
+
+src/components/BillReminders.js
+  Line 4:3:     'Paper' is defined but never used      no-unused-vars
+  Line 19:3:    'Switch' is defined but never used     no-unused-vars
+  Line 32:8:    'ErrorIcon' is defined but never used  no-unused-vars
+  Line 182:11:  Expected a default case                default-case
+
+src/components/BudgetTracker.js
+  Line 99:6:  React Hook useMemo has a missing dependency: 'calculateSpending'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/FinancialGoals.js
+  Line 25:8:  'TrendingUpIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 7:3:    'Card' is defined but never used                                                                                     no-unused-vars
+  Line 8:3:    'CardContent' is defined but never used                                                                              no-unused-vars
+  Line 21:3:   'Button' is defined but never used                                                                                   no-unused-vars
+  Line 29:8:   'AccountBalanceIcon' is defined but never used                                                                       no-unused-vars
+  Line 133:6:  React Hook useEffect has a missing dependency: 'generateInsights'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/InvestmentPortfolio.js
+  Line 8:3:    'Card' is defined but never used                   no-unused-vars
+  Line 9:3:    'CardContent' is defined but never used            no-unused-vars
+  Line 49:8:   'EditIcon' is defined but never used               no-unused-vars
+  Line 91:10:  'editItem' is assigned a value but never used      no-unused-vars
+  Line 95:10:  'dateRange' is assigned a value but never used     no-unused-vars
+  Line 95:21:  'setDateRange' is assigned a value but never used  no-unused-vars
+
+src/components/RecurringTransactions.js
+  Line 12:3:  'Grid' is defined but never used  no-unused-vars
+
+src/components/ReportsAnalytics.js
+  Line 12:3:   'Divider' is defined but never used                     no-unused-vars
+  Line 15:3:   'IconButton' is defined but never used                  no-unused-vars
+  Line 16:3:   'Tooltip' is defined but never used                     no-unused-vars
+  Line 31:16:  'Bar' is defined but never used                         no-unused-vars
+  Line 35:8:   'InfoIcon' is defined but never used                    no-unused-vars
+  Line 60:10:  'selectedMetric' is assigned a value but never used     no-unused-vars
+  Line 60:26:  'setSelectedMetric' is assigned a value but never used  no-unused-vars
+
+src/components/Settings.js
+  Line 11:3:  'Divider' is defined but never used                  no-unused-vars
+  Line 15:3:  'ListItemSecondaryAction' is defined but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/App.js
+  Line 3:3:   'Container' is defined but never used            no-unused-vars
+  Line 6:3:   'Tab' is defined but never used                  no-unused-vars
+  Line 7:3:   'Tabs' is defined but never used                 no-unused-vars
+  Line 36:8:  'AccountBalanceIcon' is defined but never used   no-unused-vars
+  Line 49:8:  'InvestmentPortfolio' is defined but never used  no-unused-vars
+  Line 50:8:  'FinancialInsights' is defined but never used    no-unused-vars
+
+src/components/BillReminders.js
+  Line 4:3:     'Paper' is defined but never used      no-unused-vars
+  Line 19:3:    'Switch' is defined but never used     no-unused-vars
+  Line 32:8:    'ErrorIcon' is defined but never used  no-unused-vars
+  Line 182:11:  Expected a default case                default-case
+
+src/components/BudgetTracker.js
+  Line 99:6:  React Hook useMemo has a missing dependency: 'calculateSpending'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/FinancialGoals.js
+  Line 25:8:  'TrendingUpIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 7:3:    'Card' is defined but never used                                                                                     no-unused-vars
+  Line 8:3:    'CardContent' is defined but never used                                                                              no-unused-vars
+  Line 21:3:   'Button' is defined but never used                                                                                   no-unused-vars
+  Line 29:8:   'AccountBalanceIcon' is defined but never used                                                                       no-unused-vars
+  Line 133:6:  React Hook useEffect has a missing dependency: 'generateInsights'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/InvestmentPortfolio.js
+  Line 8:3:    'Card' is defined but never used                   no-unused-vars
+  Line 9:3:    'CardContent' is defined but never used            no-unused-vars
+  Line 49:8:   'EditIcon' is defined but never used               no-unused-vars
+  Line 91:10:  'editItem' is assigned a value but never used      no-unused-vars
+  Line 95:10:  'dateRange' is assigned a value but never used     no-unused-vars
+  Line 95:21:  'setDateRange' is assigned a value but never used  no-unused-vars
+
+src/components/RecurringTransactions.js
+  Line 12:3:  'Grid' is defined but never used  no-unused-vars
+
+src/components/ReportsAnalytics.js
+  Line 12:3:   'Divider' is defined but never used                     no-unused-vars
+  Line 15:3:   'IconButton' is defined but never used                  no-unused-vars
+  Line 16:3:   'Tooltip' is defined but never used                     no-unused-vars
+  Line 31:16:  'Bar' is defined but never used                         no-unused-vars
+  Line 35:8:   'InfoIcon' is defined but never used                    no-unused-vars
+  Line 60:10:  'selectedMetric' is assigned a value but never used     no-unused-vars
+  Line 60:26:  'setSelectedMetric' is assigned a value but never used  no-unused-vars
+
+src/components/Settings.js
+  Line 11:3:  'Divider' is defined but never used                  no-unused-vars
+  Line 15:3:  'ListItemSecondaryAction' is defined but never used  no-unused-vars
+
+webpack compiled with 1 warning
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/App.js
+  Line 3:3:   'Container' is defined but never used           no-unused-vars
+  Line 6:3:   'Tab' is defined but never used                 no-unused-vars
+  Line 7:3:   'Tabs' is defined but never used                no-unused-vars
+  Line 36:8:  'AccountBalanceIcon' is defined but never used  no-unused-vars
+
+src/components/BillReminders.js
+  Line 4:3:     'Paper' is defined but never used      no-unused-vars
+  Line 19:3:    'Switch' is defined but never used     no-unused-vars
+  Line 32:8:    'ErrorIcon' is defined but never used  no-unused-vars
+  Line 182:11:  Expected a default case                default-case
+
+src/components/BudgetTracker.js
+  Line 99:6:  React Hook useMemo has a missing dependency: 'calculateSpending'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/FinancialGoals.js
+  Line 25:8:  'TrendingUpIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 7:3:    'Card' is defined but never used                                                                                     no-unused-vars
+  Line 8:3:    'CardContent' is defined but never used                                                                              no-unused-vars
+  Line 21:3:   'Button' is defined but never used                                                                                   no-unused-vars
+  Line 29:8:   'AccountBalanceIcon' is defined but never used                                                                       no-unused-vars
+  Line 133:6:  React Hook useEffect has a missing dependency: 'generateInsights'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/InvestmentPortfolio.js
+  Line 8:3:    'Card' is defined but never used                   no-unused-vars
+  Line 9:3:    'CardContent' is defined but never used            no-unused-vars
+  Line 49:8:   'EditIcon' is defined but never used               no-unused-vars
+  Line 91:10:  'editItem' is assigned a value but never used      no-unused-vars
+  Line 95:10:  'dateRange' is assigned a value but never used     no-unused-vars
+  Line 95:21:  'setDateRange' is assigned a value but never used  no-unused-vars
+
+src/components/RecurringTransactions.js
+  Line 12:3:  'Grid' is defined but never used  no-unused-vars
+
+src/components/ReportsAnalytics.js
+  Line 12:3:   'Divider' is defined but never used                     no-unused-vars
+  Line 15:3:   'IconButton' is defined but never used                  no-unused-vars
+  Line 16:3:   'Tooltip' is defined but never used                     no-unused-vars
+  Line 31:16:  'Bar' is defined but never used                         no-unused-vars
+  Line 35:8:   'InfoIcon' is defined but never used                    no-unused-vars
+  Line 60:10:  'selectedMetric' is assigned a value but never used     no-unused-vars
+  Line 60:26:  'setSelectedMetric' is assigned a value but never used  no-unused-vars
+
+src/components/Settings.js
+  Line 11:3:  'Divider' is defined but never used                  no-unused-vars
+  Line 15:3:  'ListItemSecondaryAction' is defined but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/App.js
+  Line 3:3:   'Container' is defined but never used           no-unused-vars
+  Line 6:3:   'Tab' is defined but never used                 no-unused-vars
+  Line 7:3:   'Tabs' is defined but never used                no-unused-vars
+  Line 36:8:  'AccountBalanceIcon' is defined but never used  no-unused-vars
+
+src/components/BillReminders.js
+  Line 4:3:     'Paper' is defined but never used      no-unused-vars
+  Line 19:3:    'Switch' is defined but never used     no-unused-vars
+  Line 32:8:    'ErrorIcon' is defined but never used  no-unused-vars
+  Line 182:11:  Expected a default case                default-case
+
+src/components/BudgetTracker.js
+  Line 99:6:  React Hook useMemo has a missing dependency: 'calculateSpending'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/FinancialGoals.js
+  Line 25:8:  'TrendingUpIcon' is defined but never used  no-unused-vars
+
+src/components/FinancialInsights.js
+  Line 7:3:    'Card' is defined but never used                                                                                     no-unused-vars
+  Line 8:3:    'CardContent' is defined but never used                                                                              no-unused-vars
+  Line 21:3:   'Button' is defined but never used                                                                                   no-unused-vars
+  Line 29:8:   'AccountBalanceIcon' is defined but never used                                                                       no-unused-vars
+  Line 133:6:  React Hook useEffect has a missing dependency: 'generateInsights'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/InvestmentPortfolio.js
+  Line 8:3:    'Card' is defined but never used                   no-unused-vars
+  Line 9:3:    'CardContent' is defined but never used            no-unused-vars
+  Line 49:8:   'EditIcon' is defined but never used               no-unused-vars
+  Line 91:10:  'editItem' is assigned a value but never used      no-unused-vars
+  Line 95:10:  'dateRange' is assigned a value but never used     no-unused-vars
+  Line 95:21:  'setDateRange' is assigned a value but never used  no-unused-vars
+
+src/components/RecurringTransactions.js
+  Line 12:3:  'Grid' is defined but never used  no-unused-vars
+
+src/components/ReportsAnalytics.js
+  Line 12:3:   'Divider' is defined but never used                     no-unused-vars
+  Line 15:3:   'IconButton' is defined but never used                  no-unused-vars
+  Line 16:3:   'Tooltip' is defined but never used                     no-unused-vars
+  Line 31:16:  'Bar' is defined but never used                         no-unused-vars
+  Line 35:8:   'InfoIcon' is defined but never used                    no-unused-vars
+  Line 60:10:  'selectedMetric' is assigned a value but never used     no-unused-vars
+  Line 60:26:  'setSelectedMetric' is assigned a value but never used  no-unused-vars
+
+src/components/Settings.js
+  Line 11:3:  'Divider' is defined but never used                  no-unused-vars
+  Line 15:3:  'ListItemSecondaryAction' is defined but never used  no-unused-vars
+
+webpack compiled with 1 warning
